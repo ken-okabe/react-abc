@@ -16,12 +16,7 @@ var ChildrenComponent = React.createClass(
 {
   render: function()
   {
-    var createChild = function(n)
-    {
-      return (<ChildComponent input={n}/>);
-    };
-
-    var elArray = [0,1,2,3,4,5,6,7,8,9].map(createChild);
+    var elArray = [<ChildComponent/>,<ChildComponent/>,<ChildComponent/>];
 
     var el = (<div>{elArray}</div>);
     return el;
@@ -32,7 +27,7 @@ var ChildComponent = React.createClass(
 {
   render: function()
   {
-    var el = (<div>child{this.props.input}</div>);
+    var el = (<div>child</div>);
     return el;
   }
 });

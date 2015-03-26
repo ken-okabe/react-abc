@@ -2,7 +2,7 @@ var HelloComponent = React.createClass(
 {
   render: function()
   {
-    return (
+    var el = (
       <div>
         Hello
         <ChildComponent input={0}/>
@@ -10,6 +10,7 @@ var HelloComponent = React.createClass(
         <ChildComponent input={2}/>
       </div>
     );
+    return el;
   }
 });
 

@@ -22,8 +22,9 @@ var ChildrenComponent = React.createClass(
     };
 
     var array = Immutable.Range(0, 9).toArray();
-    var el = (<div>{array.map(createChild)}</div>);
+    var elArray = array.map(createChild);
 
+    var el = (<div>{elArray}</div>);
     return el;
   }
 });

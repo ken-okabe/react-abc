@@ -21,7 +21,7 @@ var ChildrenComponent = React.createClass(
       return (<ChildComponent input={n}/>);
     };
 
-    var array = Immutable.Range(0, 10).toArray();
+    var array = Immutable.Range(0, 9).toArray();
     var elArray = array.map(createChild);
 
     var el = (<div>{elArray}</div>);

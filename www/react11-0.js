@@ -108,19 +108,14 @@ var ChildrenComponent = React.createClass(
 
 var ChildComponent = React.createClass(
 {
-  getInitialState: function()
-  {
-    return {clicks: 0,
-            totalClicks: 0};
-  },
   componentDidMount: function()
   {
     var com = this;
 
     ___.world = com.props.___clicks
-                .compute(function(x){com.setState({clicks: x});});
+                .compute(function(x){com.forceUpdate();});
     ___.world = ___totalClicks
-                .compute(function(x){com.setState({totalClicks: x});});
+                .compute(function(x){com.forceUpdate();});
   },
   handleClick: function()
   {
@@ -133,18 +128,20 @@ var ChildComponent = React.createClass(
   },
   render: function()
   {
+    var com = this;
+
     var divStyle = {background:"#dddddd",
-                    width:"150px",height:"150px",
+                    width:"210px",height:"210px",
                     margin:"5px",float:"left",
                     "user-select": "none",
                     "-moz-user-select": "none",
                     "-webkit-user-select": "none",
                     "-ms-user-select": "none"};
 
-    var el = (<div style={divStyle} onClick={this.handleClick}>
-                <h2>id : {this.props.id}</h2>
-                <h4>Local Clicks : {this.state.clicks}</h4>
-                <h4>Total Clicks : {this.state.totalClicks}</h4>
+    var el = (<div style={divStyle} onClick={com.handleClick}>
+                <h2>id : {com.props.id}</h2>
+                <h4>Local Clicks : {com.props.___clicks.now()}</h4>
+                <h4>Total Clicks : {___totalClicks.now()}</h4>
               </div>);
     return el;
   }

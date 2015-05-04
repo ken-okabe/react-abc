@@ -81,21 +81,17 @@ var timer = setInterval(f, 1000);
 
 var Timer = React.createClass(
 {
-  getInitialState: function()
-  {
-    return {secondsElapsed: null};
-  },
   componentDidMount: function()
   {
     var com = this;
     ___.world = ___time.compute(function(x)
     {
-      com.setState({secondsElapsed: x});
+      com.forceUpdate();
     });
   },
   render: function()
   {
-    var el = (<div>Seconds Elapsed: {this.state.secondsElapsed}</div>);
+    var el = (<div>Seconds Elapsed: {___time.now()}</div>);
     return el;
   }
 });

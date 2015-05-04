@@ -71,9 +71,7 @@ worldcomponent.log = function(a)
 var ___ = worldcomponent;
 ___.world = ___.log('start!'); //debug log
 
-var CARDS = 5;
-var array = Immutable.Range(0, CARDS).toArray();
-var ___clicksArray = array.map(function(){return ___(0);});
+var CARDS = 4;
 var ___totalClicks = ___(0);
 
 var TopComponent = React.createClass(
@@ -97,7 +95,7 @@ var ChildrenComponent = React.createClass(
   {
     var createChild = function(n)
     {
-      return (<ChildComponent id={n}/>);
+      return (<ChildComponent id={n} ___clicks={___(0)}/>);
     };
 
     var array = Immutable.Range(0, CARDS).toArray();
@@ -117,21 +115,19 @@ var ChildComponent = React.createClass(
   },
   componentDidMount: function()
   {
-    var react = this;
+    var com = this;
 
-    ___.world = ___clicksArray[react.props.id].compute(function(x)
-    {
-      react.setState({clicks: x});
-    });
-    ___.world = ___totalClicks.compute(function(x)
-    {
-      react.setState({totalClicks: x});
-    });
+    ___.world = com.props.___clicks
+                .compute(function(x){com.setState({clicks: x});});
+    ___.world = ___totalClicks
+                .compute(function(x){com.setState({totalClicks: x});});
   },
   handleClick: function()
   {
-    ___.world = ___clicksArray[this.props.id]
-                  .appear(___clicksArray[this.props.id].now() + 1);
+    var com = this;
+
+    ___.world = com.props.___clicks
+                  .appear(com.props.___clicks.now() + 1);
     ___.world = ___totalClicks
                   .appear(___totalClicks.now() + 1);
   },
@@ -147,8 +143,8 @@ var ChildComponent = React.createClass(
 
     var el = (<div style={divStyle} onClick={this.handleClick}>
                 <h2>id : {this.props.id}</h2>
-                <h3>Local Clicks : {this.state.clicks}</h3>
-                <h3>Total Clicks : {this.state.totalClicks}</h3>
+                <h4>Local Clicks : {this.state.clicks}</h4>
+                <h4>Total Clicks : {this.state.totalClicks}</h4>
               </div>);
     return el;
   }
